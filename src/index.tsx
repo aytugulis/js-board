@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import esbuild from "esbuild-wasm";
 import { Loading } from "./components/Loading";
+import { unpkgPathPlugin } from "./plugins/unpkg-path-plugin";
+const { ENV_KEY } = import.meta.env;
 
 const App = () => {
   const [input, setInput] = useState("");
@@ -31,14 +33,19 @@ const App = () => {
   useEffect(() => {
     startService();
   }, []);
-
   const onClick = async () => {
-    const result = await esbuild.transform(input, {
-      loader: "jsx",
-      target: "es2015",
+    const result = await esbuild.build({
+      entryPoints: ["index.js"],
+      bundle: true,
+      write: false,
+      plugins: [unpkgPathPlugin()],
+      define: {
+        [ENV_KEY]: '"production"',
+        global: "window",
+      },
     });
 
-    setCode(result.code);
+    setCode(result.outputFiles[0].text);
   };
 
   if (loading) return <Loading />;
