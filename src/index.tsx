@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import esbuild from "esbuild-wasm";
 import { Loading } from "./components/Loading";
 import { unpkgPathPlugin } from "./plugins/unpkg-path-plugin";
+import { fetchPlugin } from "./plugins/fetch-plugin";
 const { ENV_KEY } = import.meta.env;
 
 const App = () => {
@@ -38,7 +39,7 @@ const App = () => {
       entryPoints: ["index.js"],
       bundle: true,
       write: false,
-      plugins: [unpkgPathPlugin()],
+      plugins: [unpkgPathPlugin(), fetchPlugin(input)],
       define: {
         [ENV_KEY]: '"production"',
         global: "window",
