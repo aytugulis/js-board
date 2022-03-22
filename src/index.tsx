@@ -18,7 +18,7 @@ const App = () => {
     try {
       await esbuild.initialize({
         worker: true,
-        wasmURL: "/esbuild.wasm",
+        wasmURL: "https://www.unpkg.com/esbuild-wasm@0.14.27/esbuild.wasm",
       });
 
       setLoading(false);
