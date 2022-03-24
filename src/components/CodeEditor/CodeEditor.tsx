@@ -1,7 +1,29 @@
-import MonacoEditor from "@monaco-editor/react";
+import MonacoEditor, { OnMount } from "@monaco-editor/react";
 import prettier from "prettier";
 import parser from "prettier/parser-babel";
+import { parse } from "@babel/parser";
+import traverse from "@babel/traverse";
+import MonacoJSXHighlighter from "monaco-jsx-highlighter";
 import "./CodeEditor.css";
+
+const onMount: OnMount = (monacoEditor, monaco) => {
+  const babel = (code: string) =>
+    parse(code, {
+      sourceType: "module",
+      plugins: ["jsx"],
+      errorRecovery: true,
+    });
+
+  const highlighter = new MonacoJSXHighlighter(
+    monaco,
+    babel,
+    traverse,
+    monacoEditor
+  );
+
+  highlighter.highlightOnDidChangeModelContent(100);
+  highlighter.addJSXCommentCommand();
+};
 
 interface CodeEditorProps {
   defaultValue: string;
@@ -39,6 +61,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
       </button>
       <MonacoEditor
         onChange={(value: string | undefined) => setInput(value ?? "")}
+        onMount={onMount}
         defaultValue={defaultValue}
         value={input}
         theme="vs-dark"
