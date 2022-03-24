@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
+
 import esbuild from "esbuild-wasm";
-import { Loading } from "./components/Loading";
 import { unpkgPathPlugin } from "./plugins/unpkg-path-plugin";
 import { fetchPlugin } from "./plugins/fetch-plugin";
+import "bulmaswatch/superhero/bulmaswatch.min.css";
+
+import { Loading } from "./components/Loading/Loading";
+import { CodeEditor } from "./components/CodeEditor/CodeEditor";
+
 const { VITE_ENV_KEY } = import.meta.env;
 
 const App = () => {
@@ -79,6 +84,11 @@ const App = () => {
 
   return (
     <div>
+      <CodeEditor
+        defaultValue="const x = 1;"
+        input={input}
+        setInput={setInput}
+      />
       <textarea onChange={(e) => setInput(e.target.value)}></textarea>
       <div>
         <button onClick={onClick}>Submit</button>
