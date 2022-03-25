@@ -1,10 +1,11 @@
 import MonacoEditor, { OnMount } from "@monaco-editor/react";
+import MonacoJSXHighlighter from "monaco-jsx-highlighter";
 import prettier from "prettier";
 import parser from "prettier/parser-babel";
 import { parse } from "@babel/parser";
 import traverse from "@babel/traverse";
-import MonacoJSXHighlighter from "monaco-jsx-highlighter";
 import "./CodeEditor.css";
+import "./syntax.css";
 
 const onMount: OnMount = (monacoEditor, monaco) => {
   const babel = (code: string) =>
