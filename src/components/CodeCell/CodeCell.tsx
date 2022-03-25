@@ -1,29 +1,13 @@
 import { useState } from "react";
 
-import { Loading } from "../Loading/Loading";
+import { bundler } from "../../bundler/index";
 import { CodeEditor } from "../CodeEditor/CodeEditor";
 import { Preview } from "../Preview/Preview";
-import { bundler } from "../../bundler/index";
+import { Resizable } from "../Resizable/Resizable";
 
 export const CodeCell = () => {
   const [input, setInput] = useState("");
   const [code, setCode] = useState("");
-  /*   const [bundlerInitialized, setBundlerInitialized] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | undefined>(); */
-
-  /*   const startService = async () => {
-    if (!loading && !bundlerInitialized) return;
-    try {
-      setLoading(false);
-      setError(undefined);
-      setBundlerInitialized(true);
-    } catch (err) {
-      setLoading(false);
-      setError(err as Error);
-      setBundlerInitialized(false);
-    }
-  }; */
 
   const onClick = async () => {
     const output = await bundler(input);
@@ -34,16 +18,20 @@ export const CodeCell = () => {
   if (error) return <>error</>; */
 
   return (
-    <div>
-      <CodeEditor
-        defaultValue="const x = 1;"
-        input={input}
-        setInput={setInput}
-      />
-      <div>
-        <button onClick={onClick}>Submit</button>
+    <Resizable direction="vertical">
+      <div style={{ height: "100%", display: "flex", flexDirection: "row" }}>
+        <Resizable direction="horizontal">
+          <CodeEditor
+            defaultValue="const x = 1;console.log(x);"
+            input={input}
+            setInput={setInput}
+          />
+        </Resizable>
+        {/*         <div>
+          <button onClick={onClick}>Submit</button>
+        </div> */}
+        <Preview code={code} />
       </div>
-      <Preview code={code} />
-    </div>
+    </Resizable>
   );
 };
