@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { bundler } from "../../bundler/index";
 import { CodeEditor } from "../CodeEditor/CodeEditor";
@@ -9,10 +9,16 @@ export const CodeCell = () => {
   const [input, setInput] = useState("");
   const [code, setCode] = useState("");
 
-  const onClick = async () => {
-    const output = await bundler(input);
-    setCode(output);
-  };
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      const output = await bundler(input);
+      setCode(output);
+    }, 750);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [input]);
 
   /*   if (loading) return <Loading />;
   if (error) return <>error</>; */
@@ -27,9 +33,6 @@ export const CodeCell = () => {
             setInput={setInput}
           />
         </Resizable>
-        {/*         <div>
-          <button onClick={onClick}>Submit</button>
-        </div> */}
         <Preview code={code} />
       </div>
     </Resizable>
