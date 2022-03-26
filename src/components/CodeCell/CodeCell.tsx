@@ -8,20 +8,19 @@ import { Resizable } from "../Resizable/Resizable";
 export const CodeCell = () => {
   const [input, setInput] = useState("");
   const [code, setCode] = useState("");
+  const [err, setErr] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(async () => {
       const output = await bundler(input);
-      setCode(output);
+      setCode(output.code);
+      setErr(output.err);
     }, 750);
 
     return () => {
       clearTimeout(timer);
     };
   }, [input]);
-
-  /*   if (loading) return <Loading />;
-  if (error) return <>error</>; */
 
   return (
     <Resizable direction="vertical">
@@ -33,7 +32,7 @@ export const CodeCell = () => {
             setInput={setInput}
           />
         </Resizable>
-        <Preview code={code} />
+        <Preview code={code} err={err} />
       </div>
     </Resizable>
   );

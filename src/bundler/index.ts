@@ -14,16 +14,21 @@ export const bundler = async (rawCode: string) => {
     bundlerInitialized = true;
   }
 
-  const result = await esbuild.build({
-    entryPoints: ["index.js"],
-    bundle: true,
-    write: false,
-    plugins: [unpkgPathPlugin(), fetchPlugin(rawCode)],
-    define: {
-      [VITE_ENV_KEY]: '"production"',
-      global: "window",
-    },
-  });
+  try {
+    const result = await esbuild.build({
+      entryPoints: ["index.js"],
+      bundle: true,
+      write: false,
+      plugins: [unpkgPathPlugin(), fetchPlugin(rawCode)],
+      define: {
+        [VITE_ENV_KEY]: '"production"',
+        global: "window",
+      },
+    });
 
-  return result.outputFiles[0].text;
+    return { code: result.outputFiles[0].text, err: "" };
+  } catch (err) {
+    if (err instanceof Error) return { code: "", err: err.message };
+    return { code: "", err: "Unknown error occured." };
+  }
 };
