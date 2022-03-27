@@ -11,6 +11,7 @@
     "@babel/parser": "^7.17.8",
     "@babel/traverse": "^7.17.3",
     "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
+    "@fortawesome/fontawesome-free": "^6.1.1",
     "@monaco-editor/react": "^4.3.1",
     "@types/prettier": "^2.4.4",
     "@types/react-redux": "^7.1.23",
