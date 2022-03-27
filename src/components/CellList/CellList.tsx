@@ -1,4 +1,6 @@
+import { Fragment } from "react";
 import { useTypedSelector } from "../../hooks/use-typed-selector";
+import { AddCell } from "../AddCell/AddCell";
 import { CellListItem } from "../CellListItem/CellListItem";
 
 export const CellList = () => {
@@ -7,8 +9,18 @@ export const CellList = () => {
   );
 
   const renderedCells = cells.map((cell) => (
-    <CellListItem key={cell.id} cell={cell} />
+    <Fragment key={cell.id}>
+      <CellListItem key={cell.id} cell={cell} />
+      <AddCell previousCellId={cell.id} />
+    </Fragment>
   ));
 
-  return <div>{renderedCells}</div>;
+  return (
+    <div>
+      <div className={cells.length === 0 ? "force-visible" : ""}>
+        <AddCell previousCellId={null} />
+      </div>
+      {renderedCells}
+    </div>
+  );
 };
