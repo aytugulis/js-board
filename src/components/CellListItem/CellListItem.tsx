@@ -15,5 +15,5 @@ export const CellListItem: React.FC<CellListItemProps> = ({ cell }) => {
   return <div>{child}</div>; */
 
   if (cell.type === "code") return <CodeCell cell={cell} />;
-  else return <TextEditor />;
+  else return <TextEditor cell={cell} />;
 };

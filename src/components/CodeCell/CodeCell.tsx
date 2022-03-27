@@ -12,14 +12,13 @@ interface CodeCellProps {
 }
 
 export const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
-  const [input, setInput] = useState("");
   const [code, setCode] = useState("");
   const [err, setErr] = useState("");
   const { updateCell } = useActions();
 
   useEffect(() => {
     const timer = setTimeout(async () => {
-      const output = await bundler(input);
+      const output = await bundler(cell.content);
       setCode(output.code);
       setErr(output.err);
     }, 750);
@@ -27,7 +26,7 @@ export const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [input]);
+  }, [cell.content]);
 
   return (
     <Resizable direction="vertical">
@@ -35,8 +34,8 @@ export const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
         <Resizable direction="horizontal">
           <CodeEditor
             defaultValue="const x = 1;console.log(x);"
-            input={input}
-            setInput={setInput}
+            cell={cell}
+            updateCell={updateCell}
           />
         </Resizable>
         <Preview code={code} err={err} />

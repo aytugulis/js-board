@@ -6,6 +6,8 @@ import { parse } from "@babel/parser";
 import traverse from "@babel/traverse";
 import "./CodeEditor.css";
 import "./syntax.css";
+import { Cell } from "../../state";
+import { UpdateCellAction } from "../../state/actions";
 
 const onMount: OnMount = (monacoEditor, monaco) => {
   const babel = (code: string) =>
@@ -28,17 +30,17 @@ const onMount: OnMount = (monacoEditor, monaco) => {
 
 interface CodeEditorProps {
   defaultValue: string;
-  input: string;
-  setInput: React.Dispatch<React.SetStateAction<string>>;
+  cell: Cell;
+  updateCell(id: string, content: string): UpdateCellAction;
 }
 
 export const CodeEditor: React.FC<CodeEditorProps> = ({
   defaultValue,
-  input,
-  setInput,
+  cell,
+  updateCell,
 }) => {
   const onFormatClick = () => {
-    const unformatted = input || defaultValue;
+    const unformatted = cell.content || defaultValue;
 
     const formatted = prettier
       .format(unformatted, {
@@ -49,7 +51,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
       })
       .replace("/\n$/", "");
 
-    setInput(formatted);
+    updateCell(cell.id, formatted);
   };
 
   return (
@@ -61,10 +63,12 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
         Format
       </button>
       <MonacoEditor
-        onChange={(value: string | undefined) => setInput(value ?? "")}
+        onChange={(value: string | undefined) =>
+          updateCell(cell.id, value || "")
+        }
         onMount={onMount}
         defaultValue={defaultValue}
-        value={input}
+        value={cell.content}
         theme="vs-dark"
         language="javascript"
         height="100%"
