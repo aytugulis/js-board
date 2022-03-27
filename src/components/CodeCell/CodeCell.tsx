@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 
 import { bundler } from "../../bundler/index";
+import { useActions } from "../../hooks/use-actions";
+import { Cell } from "../../state";
 import { CodeEditor } from "../CodeEditor/CodeEditor";
 import { Preview } from "../Preview/Preview";
 import { Resizable } from "../Resizable/Resizable";
 
-export const CodeCell = () => {
+interface CodeCellProps {
+  cell: Cell;
+}
+
+export const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const [input, setInput] = useState("");
   const [code, setCode] = useState("");
   const [err, setErr] = useState("");
+  const { updateCell } = useActions();
 
   useEffect(() => {
     const timer = setTimeout(async () => {
