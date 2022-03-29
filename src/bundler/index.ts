@@ -24,6 +24,8 @@ export const bundler = async (rawCode: string) => {
         [VITE_ENV_KEY]: '"production"',
         global: "window",
       },
+      jsxFactory: "_React.createElement",
+      jsxFragment: "_React.Fragment",
     });
 
     return { code: result.outputFiles[0].text, err: "" };
