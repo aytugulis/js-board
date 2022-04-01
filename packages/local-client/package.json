@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "start": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
@@ -22,6 +23,7 @@
     "esbuild-wasm": "^0.14.27",
     "immer": "^9.0.12",
     "localforage": "^1.10.0",
+    "monaco-editor": "^0.33.0",
     "monaco-jsx-highlighter": "^2.0.4",
     "prettier": "^2.6.0",
     "react": "^17.0.2",
@@ -29,7 +31,8 @@
     "react-redux": "^7.2.6",
     "react-resizable": "^3.0.4",
     "redux": "^4.1.2",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "rollup-plugin-polyfill-node": "^0.9.0"
   },
   "devDependencies": {
     "@types/babel__traverse": "^7.14.2",
