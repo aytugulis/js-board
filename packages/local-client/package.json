@@ -7,7 +7,7 @@
   "files": [
     "dist"
   ],
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "start": "vite",
@@ -39,12 +39,12 @@
     "rollup-plugin-polyfill-node": "^0.9.0"
   },
   "devDependencies": {
-    "@types/prettier": "^2.4.4",
-    "@types/react-redux": "^7.1.23",
-    "@types/react-resizable": "^1.7.4",
     "@types/babel__traverse": "^7.14.2",
+    "@types/prettier": "^2.4.4",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
+    "@types/react-redux": "^7.1.23",
+    "@types/react-resizable": "^1.7.4",
     "@vitejs/plugin-react": "^1.0.7",
     "typescript": "^4.5.4",
     "vite": "^2.8.0"
