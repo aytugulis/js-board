@@ -2,6 +2,8 @@ import path from "path";
 import { Command } from "commander";
 import { serve } from "local-api";
 
+const production = process.env.NODE_ENV === "production";
+
 export const serverCommand = new Command()
   .command("serve [filename]")
   .description("Open file for editing.")
@@ -9,7 +11,12 @@ export const serverCommand = new Command()
   .action(async (filename = "js-board.js", options: { port: string }) => {
     try {
       const dir = path.join(process.cwd(), path.dirname(filename));
-      await serve(parseInt(options.port), path.basename(filename), dir);
+      await serve(
+        parseInt(options.port),
+        path.basename(filename),
+        dir,
+        !production
+      );
       console.log(
         `Opened ${filename}. Nagigate to htpp://localhost:${options.port} to edit the file.`
       );
