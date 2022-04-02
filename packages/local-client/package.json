@@ -7,7 +7,7 @@
   "files": [
     "dist"
   ],
-  "version": "1.0.4",
+  "version": "1.0.5",
   "scripts": {
     "dev": "vite",
     "start": "vite",

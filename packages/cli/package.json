@@ -1,6 +1,6 @@
 {
   "name": "jscodeboard",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "publishConfig": {
     "access": "public"
@@ -17,10 +17,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@jscodeboard/local-client": "^1.0.4"
+    "@jscodeboard/local-client": "^1.0.5"
   },
   "devDependencies": {
-    "@jscodeboard/local-api": "^1.0.4",
+    "@jscodeboard/local-api": "^1.0.5",
     "@types/node": "^17.0.23",
     "commander": "^9.1.0",
     "esbuild": "0.14.27",
