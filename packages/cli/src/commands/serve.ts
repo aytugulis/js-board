@@ -8,7 +8,7 @@ export const serverCommand = new Command()
   .command("serve [filename]")
   .description("Open file for editing.")
   .option("-p --port <number>", "port to run server on", "4005")
-  .action(async (filename = "js-board.js", options: { port: string }) => {
+  .action(async (filename = "jscodeboard.js", options: { port: string }) => {
     try {
       const dir = path.join(process.cwd(), path.dirname(filename));
       await serve(
