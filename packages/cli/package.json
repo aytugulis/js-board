@@ -1,19 +1,29 @@
 {
-  "name": "cli",
+  "name": "js-board",
   "version": "1.0.0",
   "description": "",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "start": "tsc --watch --preserveWatchOutput"
+    "start": "tsc --watch --preserveWatchOutput",
+    "prepublishOnly": "esbuild src/index.ts --platform=node --outfile=dist/index.js --bundle --minify --define:process.env.NODE_ENV=\\\"production\\\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commander": "^9.1.0",
-    "local-api": "^1.0.0"
+    "@js-board/local-client": "^0.0.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
-    "typescript": "^4.6.3"
+    "esbuild": "^0.14.30",
+    "typescript": "^4.6.3",
+    "@js-board/local-api": "^1.0.0",
+    "commander": "^9.1.0"
   }
 }

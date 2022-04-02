@@ -1,12 +1,19 @@
 {
-  "name": "local-client",
+  "name": "@js-board/local-client",
   "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "start": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@babel/parser": "^7.17.8",
@@ -14,9 +21,6 @@
     "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
     "@fortawesome/fontawesome-free": "^6.1.1",
     "@monaco-editor/react": "^4.3.1",
-    "@types/prettier": "^2.4.4",
-    "@types/react-redux": "^7.1.23",
-    "@types/react-resizable": "^1.7.4",
     "@uiw/react-md-editor": "^3.11.2",
     "axios": "^0.26.1",
     "bulmaswatch": "^0.8.1",
@@ -35,6 +39,9 @@
     "rollup-plugin-polyfill-node": "^0.9.0"
   },
   "devDependencies": {
+    "@types/prettier": "^2.4.4",
+    "@types/react-redux": "^7.1.23",
+    "@types/react-resizable": "^1.7.4",
     "@types/babel__traverse": "^7.14.2",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
