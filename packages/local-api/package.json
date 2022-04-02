@@ -1,5 +1,5 @@
 {
-  "name": "@js-board/local-api",
+  "name": "@jscodeboard/local-api",
   "version": "1.0.0",
   "publishConfig": {
     "access": "public"
@@ -23,7 +23,7 @@
     "typescript": "^4.6.3"
   },
   "dependencies": {
-    "@js-board/local-client": "^1.0.0",
+    "@jscodeboard/local-client": "^1.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "http-proxy-middleware": "^2.0.4"

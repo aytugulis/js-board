@@ -1,5 +1,5 @@
 {
-  "name": "@js-board/local-client",
+  "name": "@jscodeboard/local-client",
   "private": true,
   "publishConfig": {
     "access": "public"

@@ -43,11 +43,7 @@ export const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
         }}
       >
         <Resizable direction="horizontal">
-          <CodeEditor
-            defaultValue="const x = 1;console.log(x);"
-            cell={cell}
-            updateCell={updateCell}
-          />
+          <CodeEditor defaultValue="" cell={cell} updateCell={updateCell} />
         </Resizable>
         <div className="progress-wrapper">
           {!bundle || bundle.loading ? (

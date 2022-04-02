@@ -23,7 +23,7 @@ export const serve = (
     );
   } else {
     const packagePath = require.resolve(
-      "@js-board/local-client/dist/index.html"
+      "@jscodeboard/local-client/dist/index.html"
     );
     app.use(express.static(path.dirname(packagePath)));
   }
