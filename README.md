@@ -25,5 +25,5 @@ npx jscodeboard serve -p 5000
 npx jscodeboard serve --port 5000
 
 # Default port = 4005
-# Default file name = notebook.js
+# Default file name = jscodeboard.js
 ```
